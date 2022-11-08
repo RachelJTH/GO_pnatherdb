@@ -14,6 +14,7 @@ http://pantherdb.org/services/details.jsp
 ####### customized region #######
 inputfile = "C:/bigdata_project/1N219031407_1N922082201/20221024/1N219031407_1N922082201/2_GO enrichment/targeted_up_regulated_gene.txt"
 organism_longname = "Caenorhabditis elegans"
+optfile = "C:/bigdata_project/miRNA_mRNA analysis/piTa/src/GO_pnatherdb/opt_test.txt"
 #################################
 
 
@@ -53,30 +54,37 @@ def get_gene_ipt_fmt(inputfile):
             inupt_set.add(line.strip())
     ipt_list_str = ",".join(inupt_set)
     return ipt_list_str
+ 
 
 ## GO 
 ## PANTHER Tool: Enrichment (overrepresentation) 
 
-go_enrich_api = "http://pantherdb.org/services/oai/pantherdb/enrich/overrep?"
-taxon_id = get_taxon_id(main_url, organism_longname)
-# ipt_list_str = get_gene_ipt_fmt(inputfile)
-ipt_list_str = "Q96PB1"
-# print(ipt_list_str)
-labels = {'biological_process', 'molecular_function', 'cellular_component'}
-test_type = 'FISHER' # FISHER(default) or BiNOMIAL
-correct_type = 'FDR' # FDR(default), BONFERRONI, NONE
-for data_type in labels:
+def overexpresentation(data_type):
+    go_enrich_api = "http://pantherdb.org/services/oai/pantherdb/enrich/overrep?"
+    
+    test_type = 'FISHER' # FISHER(default) or BiNOMIAL
+    correct_type = 'FDR' # FDR(default), BONFERRONI, NONE
+    taxon_id = get_taxon_id(main_url, organism_longname)
+    ###### Test ######
+    # ipt_list_str = "WBGene00010256,WBGene00016022"
+    # taxon_id = 9606
+    ##################
+    ipt_list_str = get_gene_ipt_fmt(inputfile)
+    
     # param_obj = {'geneInputList':ipt_list_str, 'organism':taxon_id, 'refOrganism':taxon_id, 'annotDataSet':data_type, 'enrichmentTestType': test_type, 'correction': correct_type}
     go_enrich_api += "{0}{1}&{2}{3}&{4}{5}&{6}{7}&{8}{9}&{10}{11}".format("geneInputList=",ipt_list_str, 'organism=',taxon_id, 'refOrganism=',taxon_id, 'annotDataSet=', data_type,'enrichmentTestType=', test_type, 'correction=', correct_type) 
     res = requests.post(go_enrich_api)
     enrich_go_dict = res.json()
-    print(enrich_go_dict['search'].keys())
+    print(enrich_go_dict['results']['result'])
+
+    return go_enrich_api
+
+
+# labels = {'biological_process':'GO:0008150', 'molecular_function':'GO:0003674', 'cellular_component':'GO:0005575'}
+labels = {'biological_process':'GO:0008150'}
+for label in labels:
+    data_type = '%3A'.join(labels[label].split(":"))
+    overexpresentation(data_type)   
 
 #### TEST OUTPUT ####
 # print(taxon_id)
-
-
-
-# x = requests.post(url, json = myobj)
-
-# print(x.text)

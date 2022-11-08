@@ -1,0 +1,76 @@
+{
+  "search": {
+    "product": {
+      "source": "PANTHERDB",
+      "version": 17
+    },
+    "annotation_data_sets": {
+      "annotation_data_type": [
+        {
+          "release_date": "2022-07-01",
+          "description": "Gene Ontology Molecular Function annotations including both manually curated and electronic annotations.",
+          "id": "GO:0003674",
+          "label": "molecular_function",
+          "version": "10.5281/zenodo.6799722"
+        },
+        {
+          "release_date": "2022-07-01",
+          "description": "Gene Ontology Biological Process annotations including both manually curated and electronic annotations.",
+          "id": "GO:0008150",
+          "label": "biological_process",
+          "version": "10.5281/zenodo.6799722"
+        },
+        {
+          "release_date": "2022-07-01",
+          "description": "Gene Ontology Cellular Component annotations including both manually curated and electronic annotations.",
+          "id": "GO:0005575",
+          "label": "cellular_component",
+          "version": "10.5281/zenodo.6799722"
+        },
+        {
+          "release_date": "2022-02-22",
+          "description": "A molecular process that can be carried out by the action of a single macromolecular machine, usually via direct physical interactions with other molecular entities. Function in this sense denotes an action, or activity, that a gene product (or a complex) performs. These actions are described from two distinct but related perspectives: (1) biochemical activity, and (2) role as a component in a larger system/process.",
+          "id": "ANNOT_TYPE_ID_PANTHER_GO_SLIM_MF",
+          "label": "PANTHER GO Slim Molecular Function",
+          "version": 17
+        },
+        {
+          "release_date": "2022-02-22",
+          "description": "A biological process represents a specific objective that the organism is genetically programmed to achieve. Biological processes are often described by their outcome or ending state, e.g., the biological process of cell division results in the creation of two daughter cells (a divided cell) from a single parent cell. A biological process is accomplished by a particular set of molecular functions carried out by specific gene products (or macromolecular complexes), often in a highly regulated manner and in a particular temporal sequence.",
+          "id": "ANNOT_TYPE_ID_PANTHER_GO_SLIM_BP",
+          "label": "PANTHER GO Slim Biological Process",
+          "version": 17
+        },
+        {
+          "release_date": "2022-02-22",
+          "description": "A location, relative to cellular compartments and structures, occupied by a macromolecular machine when it carries out a molecular function. There are two ways in which the gene ontology describes locations of gene products: (1) relative to cellular structures (e.g., cytoplasmic side of plasma membrane) or compartments (e.g., mitochondrion), and (2) the stable macromolecular complexes of which they are parts (e.g., the ribosome).",
+          "id": "ANNOT_TYPE_ID_PANTHER_GO_SLIM_CC",
+          "label": "PANTHER GO Slim Cellular Location",
+          "version": 17
+        },
+        {
+          "release_date": "2022-02-22",
+          "description": "",
+          "id": "ANNOT_TYPE_ID_PANTHER_PC",
+          "label": "protein class",
+          "version": 17
+        },
+        {
+          "release_date": "2022-02-22",
+          "description": "Panther Pathways",
+          "id": "ANNOT_TYPE_ID_PANTHER_PATHWAY",
+          "label": "ANNOT_TYPE_PANTHER_PATHWAY",
+          "version": 17
+        },
+        {
+          "release_date": "2021-10-01",
+          "description": "Reactome Pathways",
+          "id": "ANNOT_TYPE_ID_REACTOME_PATHWAY",
+          "label": "ANNOT_TYPE_REACTOME_PATHWAY",
+          "version": 65
+        }
+      ]
+    },
+    "search_type": "PANTHER supported Annotation Data Sets Information"
+  }
+}
