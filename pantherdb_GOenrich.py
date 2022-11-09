@@ -3,7 +3,8 @@
 
 import requests, os, re
 from inspect import currentframe, getframeinfo
-
+import json
+import pandas as pd
 '''
 Ref:
 http://pantherdb.org/services/openAPISpec.jsp
@@ -74,9 +75,19 @@ def overexpresentation(data_type):
     # param_obj = {'geneInputList':ipt_list_str, 'organism':taxon_id, 'refOrganism':taxon_id, 'annotDataSet':data_type, 'enrichmentTestType': test_type, 'correction': correct_type}
     go_enrich_api += "{0}{1}&{2}{3}&{4}{5}&{6}{7}&{8}{9}&{10}{11}".format("geneInputList=",ipt_list_str, 'organism=',taxon_id, 'refOrganism=',taxon_id, 'annotDataSet=', data_type,'enrichmentTestType=', test_type, 'correction=', correct_type) 
     res = requests.post(go_enrich_api)
-    enrich_go_dict = res.json()
-    print(enrich_go_dict['results']['result'])
+    enrich_go_dict = res.json() ## transfer api return object to Dictionary object
 
+    # print(enrich_go_dict['results']['result'])
+    pd_df = pd.DataFrame(enrich_go_dict['results']['result'])
+
+    ## filtering: query gene#
+    pd_df[(pd_df.number_in_list > 0) & (pd_df.number_in_list != "")]
+
+    # print(pd_df.number_in_list)
+
+    with open(optfile, 'w') as f:  
+        pd_df.to_csv(f, header=True, index=False, sep="\t", lineterminator="")
+            
     return go_enrich_api
 
 
